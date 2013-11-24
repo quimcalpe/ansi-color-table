@@ -1,0 +1,23 @@
+{
+  "name": "ansi-color-table",
+  "version": "0.0.1",
+  "description": "Borderless tables for console with ansi colors and formatting support",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap ./test",
+    "start": "node index.js"
+  },
+  "author": "Quim Calpe <quim@kalpe.com> (https://github.com/quimcalpe)",
+  "homepage": "https://github.com/quimcalpe/ansi-color-table",
+  "license": "MIT",
+  "dependencies": {
+    "ansi": "~0.2.1"
+  },
+  "devDependencies": {
+    "tap": "~0.4.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/quimcalpe/ansi-color-table.git"
+  }
+}
