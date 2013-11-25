@@ -85,6 +85,7 @@ function printTable(table, opts, stream) {
     });
     stream.write("\n");
   });
+  if ( stream != process.stdout ) stream.end();
 }
 
 function padSegments(str, padLen, align, padChar) {

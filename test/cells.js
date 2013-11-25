@@ -22,6 +22,7 @@ test('Read content from random cells', function (t) {
       t.pass();
     }
   };
+  output.end = function () {};
   table(tableData, {}, output);
 });
 
