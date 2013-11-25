@@ -1,5 +1,4 @@
 var ansi = require("ansi");
-var cursor = ansi(process.stdout);
 
 var colors = [
   "white",
@@ -41,11 +40,14 @@ styles.forEach(function (style) {
   };
 });
 
-function printTable(table, opts) {  
+function printTable(table, opts, stream) {
   opts = opts || { align : [] };
   if ( opts.align === undefined ) opts.align = [];
   // compute row length
   if ( table.length === 0 ) return;
+  // output stream
+  stream = stream || process.stdout;
+  var cursor = ansi(stream);
   var numCols = table.reduce(function (maxCols, col) {
     return ( col.length > maxCols ) ? col.length : maxCols;
   }, 0);
@@ -67,7 +69,7 @@ function printTable(table, opts) {
     row.forEach(function (col, indexCol) {
       var align = ( opts.headerAlign && indexRow === 0 ) ? opts.headerAlign : opts.align[indexCol];
       segments = padSegments(col.toString(), maxColumnLengths[indexCol], align);
-      process.stdout.write(segments.left);
+      stream.write(segments.left);
       if ( col._color ) {
         cursor[col._color]();
       }
@@ -76,12 +78,12 @@ function printTable(table, opts) {
           cursor[style]();
         });
       }
-      process.stdout.write(col.toString());
+      stream.write(col.toString());
       cursor.reset();
-      process.stdout.write(segments.right);
-      if ( indexCol < row.length-1 ) process.stdout.write(opts.separator || "  ");
+      stream.write(segments.right);
+      if ( indexCol < row.length-1 ) stream.write(opts.separator || "  ");
     });
-    process.stdout.write("\n");
+    stream.write("\n");
   });
 }
 
