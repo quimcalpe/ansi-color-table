@@ -1,4 +1,5 @@
 var ansi = require("ansi");
+var padSegments = require("./lib/padsegments");
 
 var colors = [
   "white",
@@ -86,29 +87,6 @@ function printTable(table, opts, stream) {
     stream.write("\n");
   });
   if ( stream != process.stdout ) stream.end();
-}
-
-function padSegments(str, padLen, align, padChar) {
-  var left = "";
-  var right = "";
-  if ( str.length >= padLen ) return { left: left, right: right };
-  if ( padChar === undefined ) padChar = " ";
-  switch ( align ) {
-    case "center":
-      var availableSlots = padLen - str.length;
-      right = Math.ceil(availableSlots / 2);
-      left = availableSlots - right;
-      right = Array(right+1).join(padChar);
-      left = Array(left+1).join(padChar);
-    break;
-    case "right":
-      left = Array(padLen + 1 - str.length).join(padChar);
-    break;
-    default:
-      right = Array(padLen + 1 - str.length).join(padChar);
-    break;
-  }
-  return { left: left, right: right };
 }
 
 module.exports = exports = printTable;
