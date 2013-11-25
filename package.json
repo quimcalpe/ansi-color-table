@@ -1,6 +1,6 @@
 {
   "name": "ansi-color-table",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Borderless tables for console with ansi colors and formatting support",
   "main": "index.js",
   "scripts": {
