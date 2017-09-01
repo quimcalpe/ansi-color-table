@@ -38,7 +38,7 @@ table(data, {
   headerAlign: "center"
 });
 ```
-**Redirect output to custom stream intead of `process.stdout`**
+**Redirect output to custom stream instead of `process.stdout`**
 ```javascript
 var table = require('../');
 var Stream = require('stream');
